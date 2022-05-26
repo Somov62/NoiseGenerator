@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Noise
 {
@@ -10,7 +11,10 @@ namespace Noise
             var noise = Generator.GenerateNoise();
             //OutputNoise(noise);
             ImageCreator.CreateImage(noise);
+            
             Console.WriteLine("success");
+
+            Process.Start("cmd.exe", "/C " + "mspaint.exe " + Environment.CurrentDirectory + @"\noise.png");
             Console.ReadKey();
         }
 
