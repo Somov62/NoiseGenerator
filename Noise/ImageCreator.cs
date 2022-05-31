@@ -13,7 +13,7 @@ namespace Noise
             {
                 for (int j = 0; j < noise.GetLength(1); j++)
                 {
-                    int colorRatio = Convert.ToInt32(127 * noise[i, j]) + 128;
+                    int colorRatio = Convert.ToInt32(63 * (noise[i, j])) + 128;
                     flag.SetPixel(j, i, Color.FromArgb(colorRatio, colorRatio, colorRatio));
                 }
             }

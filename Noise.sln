@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32510.428
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Noise", "Noise\Noise.csproj", "{99BF0409-246E-4FF1-9AF4-B60BF56F701B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Noise", "Noise\Noise.csproj", "{99BF0409-246E-4FF1-9AF4-B60BF56F701B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generator2", "Generator2\Generator2.csproj", "{138CABE3-728B-43CE-B0C2-CDC1AE660176}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generator1", "Generator1\Generator1.csproj", "{5C4822EC-FB1E-4AD9-8976-D41CBDF98C10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{99BF0409-246E-4FF1-9AF4-B60BF56F701B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99BF0409-246E-4FF1-9AF4-B60BF56F701B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99BF0409-246E-4FF1-9AF4-B60BF56F701B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{138CABE3-728B-43CE-B0C2-CDC1AE660176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{138CABE3-728B-43CE-B0C2-CDC1AE660176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{138CABE3-728B-43CE-B0C2-CDC1AE660176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{138CABE3-728B-43CE-B0C2-CDC1AE660176}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C4822EC-FB1E-4AD9-8976-D41CBDF98C10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C4822EC-FB1E-4AD9-8976-D41CBDF98C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C4822EC-FB1E-4AD9-8976-D41CBDF98C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C4822EC-FB1E-4AD9-8976-D41CBDF98C10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

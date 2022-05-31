@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Noise
+namespace Generator1
 {
     public static class Generator
     {
@@ -16,7 +16,7 @@ namespace Noise
             {
                 for (int j = 0; j < grid.GetLength(1); j++)
                 {
-                    grid[i, j] = GetRandomVector();
+                    grid[i, j] = Tools.GetRandomVector();
                 }
             }
             return grid;
@@ -39,14 +39,14 @@ namespace Noise
 
                     (double, double) pointVector = new(pointCoordX, pointCoordY);
 
-                    double leftTop = ScalarProduct(pointVector, grid[i, j]);
-                    double rightTop = ScalarProduct(pointVector, grid[i, j + 1]);
-                    double leftBottom = ScalarProduct(pointVector, grid[i + 1, j]);
-                    double rightBottom = ScalarProduct(pointVector, grid[i + 1, j + 1]);
+                    double leftTop = Tools.ScalarProduct(pointVector, grid[i, j]);
+                    double rightTop = Tools.ScalarProduct(pointVector, grid[i, j + 1]);
+                    double leftBottom = Tools.ScalarProduct(pointVector, grid[i + 1, j]);
+                    double rightBottom = Tools.ScalarProduct(pointVector, grid[i + 1, j + 1]);
 
-                    double top = LinearInterpolation(leftTop, rightTop, pointCoordX);
-                    double bottom = LinearInterpolation(leftBottom, rightBottom, pointCoordX);
-                    noise[i, j] = Math.Round(LinearInterpolation(top, bottom, pointCoordY), 1);
+                    double top = Tools.LinearInterpolation(leftTop, rightTop, pointCoordX);
+                    double bottom = Tools.LinearInterpolation(leftBottom, rightBottom, pointCoordX);
+                    noise[i, j] = Math.Round(Tools.LinearInterpolation(top, bottom, pointCoordY), 1);
 
                 }
             }
@@ -70,16 +70,16 @@ namespace Noise
                     {
                         int iIndex = i;
                         int jIndex = j;
-                        if (i + 1 == noise.GetLength(0)) iIndex = i - 1;
-                        if (j + 1 == noise.GetLength(1)) jIndex = j - 1;
+                        if (i + 1 == noise.GetLength(0)) iIndex = 0;
+                        if (j + 1 == noise.GetLength(1)) jIndex = 0;
                         double nodeLeftTop = noise[i, j];
                         double nodeLeftBottom = noise[iIndex + 1, j];
                         double nodeRightTop = noise[i, jIndex + 1];
                         double nodeRightBottom = noise[iIndex + 1, jIndex + 1];
 
-                        double lerpTop = LinearInterpolation(nodeLeftTop, nodeRightTop);
-                        double lerpBottom = LinearInterpolation(nodeLeftBottom, nodeRightBottom);
-                        noise[i, j] = LinearInterpolation(lerpTop, lerpBottom);
+                        double lerpTop = Tools.LinearInterpolation(nodeLeftTop, nodeRightTop);
+                        double lerpBottom = Tools.LinearInterpolation(nodeLeftBottom, nodeRightBottom);
+                        noise[i, j] = Tools.LinearInterpolation(lerpTop, lerpBottom);
                     }
                 }
                 Console.SetCursorPosition(0, 0);
@@ -97,38 +97,6 @@ namespace Noise
                 }
             }
         }
-        private static double LinearInterpolation(double node1, double node2, double pointCoord = 0.5)
-        {
-            pointCoord = QunticCurve(pointCoord);
-            //pointCoord = CubicCurve(pointCoord);
-            return node1 + (node2 - node1) * pointCoord;
-        }
-
-        private static double QunticCurve(double t)
-        {
-            return t * t * t * (t * (t * 6 - 15) + 10);
-        }
-
-        private static double CubicCurve(double t)
-        {
-            return -2 * t * t * t + 3 * t * t;
-        }
-
-        private static (double, double) GetRandomVector()
-        {
-            Random rnd = new Random();
-            return rnd.Next(4) switch
-            {
-                0 => (1, 0),
-                1 => (-1, 0),
-                2 => (0, 1),
-                _ => (0, -1),
-            };
-        }
-
-        private static double ScalarProduct((double, double) vector1, (double, double) vector2)
-        {
-            return vector1.Item1 * vector2.Item1 + vector1.Item2 * vector2.Item2;
-        }
+       
     }
 }
