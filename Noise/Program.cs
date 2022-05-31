@@ -11,28 +11,33 @@ namespace Noise
         {
             Console.SetWindowPosition(0, 0);
 
+            #region gen1
 
-            //Generator2.Generator generator = new(29102003);
+            var noise = Generator1.Generator.GenerateNoise();
+            Generator1.ImageCreator.CreateImage(noise);
 
-            //for (int i = -10; i < 10; i++)
-            //{
-            //    for (int j = -10; j < 10; j++)
-            //    {
-            //        generator.GenerateChunk(i, j);
-            //    }
-            //}
-            //var map = generator.Map.GetMapArea(-10, -10, 20, 20);
-            ImageCreator.CreateImage(Generator1.Generator.GenerateNoise());
+            #endregion
+
+            #region gen2
+            Generator2.Generator generator = new(29102003);
+
+            for (int i = -10; i < 10; i++)
+            {
+                for (int j = -10; j < 10; j++)
+                {
+                    generator.GenerateChunk(i, j);
+                }
+            }
+            var map = generator.Map.GetMapArea(-10, -10, 20, 20);
+
+            Generator2.ImageCreator.CreateImage(map);
+            #endregion
 
             Console.WriteLine("success");
 
             Process.Start("cmd.exe", "/C " + "mspaint.exe " + Environment.CurrentDirectory + @"\noise.png");
 
             Console.ReadKey();
-
-
-
-
         }
 
 
